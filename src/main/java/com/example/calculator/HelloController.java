@@ -1,26 +1,12 @@
 package com.example.calculator;
 
-import java.net.URL;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.text.DateFormat;
 
 public class HelloController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private DatePicker dateOfBirthField;
@@ -41,42 +27,38 @@ public class HelloController {
             int month = dateOfBirth.getMonthValue();
             int day = dateOfBirth.getDayOfMonth();
 
-            Calendar dobToExpiryDate = new GregorianCalendar(year, month-1, day);  // дата рождения
-            Calendar today = Calendar.getInstance(); // текущая дата
-            boolean stop = false; // флажок для остановки принта, в случаях бессрочного паса
+            LocalDate getInstance = LocalDate.now();
+            LocalDate expiryDate = LocalDate.of(year, month, day);
+            boolean stop = false;
 
-            int age = today.get(Calendar.YEAR) - dobToExpiryDate.get(Calendar.YEAR);
-            if (today.get(Calendar.DAY_OF_YEAR) <= dobToExpiryDate.get(Calendar.DAY_OF_YEAR))
+            int age = getInstance.getYear() - dateOfBirth.getYear();
+            if (getInstance.getDayOfYear() <= dateOfBirth.getDayOfYear())
                 age--;
-            System.out.println(age);
 
             if (age <= 20) {
 
-                dobToExpiryDate.add(Calendar.YEAR, 20);
-                dobToExpiryDate.add(Calendar.DAY_OF_YEAR, 90);
+                expiryDate = expiryDate.plusYears(20);
+                expiryDate = expiryDate.plusDays(90);
 
-            } else if (age > 20 && age <= 45) {
+            } else if (age <= 45) {
 
-                dobToExpiryDate.add(Calendar.YEAR, 45);
-                dobToExpiryDate.add(Calendar.DAY_OF_YEAR, 90);
+                expiryDate = expiryDate.plusYears(45);
+                expiryDate = expiryDate.plusDays(90);
 
             } else {
 
                 stop = true;
-                System.out.println("Бессрочный документ");
+                expDate.setText("Бессрочный документ");
 
             }
 
             if (!stop) {
 
-                DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
-                System.out.println(dateFormat.format(dobToExpiryDate.getTime()));
-                expDate.setText(dateFormat.format((dobToExpiryDate.getTime())));
+                expDate.setText(expiryDate.toString());
+                System.out.println(expiryDate);
 
             }
-
         });
-
     }
 }
 
