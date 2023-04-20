@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minWidth="-Infinity" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/17.0.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calculator.HelloController">
+   <children>
+      <AnchorPane layoutX="-14.0" layoutY="107.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #fafafa;">
+         <children>
+            <DatePicker fx:id="dateOfBirthField" layoutX="128.0" layoutY="115.0" prefHeight="38.0" prefWidth="144.0" promptText="ДД.ММ.ГГГГ" style="-fx-border-color: silver; -fx-border-radius: 8;">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></DatePicker>
+            <Button fx:id="getExpiryDateButton" layoutX="155.0" layoutY="174.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" style="-fx-border-color: silver; -fx-border-radius: 6;" text="Рассчитать " />
+            <Label fx:id="expDate" alignment="CENTER" layoutX="136.0" layoutY="246.0" prefHeight="18.0" prefWidth="127.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="40.0" layoutY="27.0" text="Калькулятор срока действия " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
